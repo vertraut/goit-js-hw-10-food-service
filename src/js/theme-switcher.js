@@ -1,13 +1,15 @@
 const bodyEl = document.querySelector("body")
 
-export const themeSwitcherEl = document.querySelector(".theme-switch__control input")
+export const themeSwitcherEl = document.querySelector("#theme-switch-toggle")//theme switcher
 
-const LIGTHTHEME = 'light-theme';
-const DARKTHEME = 'dark-theme';
+const Theme = {
+  LIGHT: 'light-theme',
+  DARK: 'dark-theme',
+};
 
 
 export function themeSwithcer(e) { 
-    const theme = e.target.checked ? DARKTHEME : LIGTHTHEME;
+    const theme = e.target.checked ? Theme.DARK : Theme.LIGHT;
     window.localStorage.setItem('theme', theme)
     clearClassThemeFromBody()
     setTheme()
@@ -21,19 +23,19 @@ export function setTheme() {
         bodyEl.classList.add(themeLocalStorage)//добавляем актуальный класс на body
     }
     else {//если пользователь первый раз загружает страницу устанавливаем тему по-умолчанию
-        bodyEl.classList.add(LIGTHTHEME)
-        window.localStorage.setItem('theme', LIGTHTHEME)
+        bodyEl.classList.add(Theme.LIGHT)
+        window.localStorage.setItem('theme', Theme.LIGHT)
     }
     setCheckboxStatus()//устанавливаем чекбокс в нужное состояние
 }
 
 function clearClassThemeFromBody() {  //функция удаления классов темы с body
-    bodyEl.classList.remove(DARKTHEME, LIGTHTHEME)
+    bodyEl.classList.remove(Theme.DARK, Theme.LIGHT)
 }
 
 function setCheckboxStatus() { //ф-я установки состояния переключателя темы
     const themeLocalStorage = window.localStorage.getItem('theme')
-    if (themeLocalStorage === DARKTHEME) { 
+    if (themeLocalStorage === Theme.DARK) { 
         themeSwitcherEl.checked = true;
     }else themeSwitcherEl.checked = false;
 }
