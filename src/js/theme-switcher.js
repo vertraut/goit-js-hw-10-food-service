@@ -31,6 +31,7 @@ export function setTheme() {
 
 function clearClassThemeFromBody() {  //функция удаления классов темы с body
     bodyEl.classList.remove(Theme.DARK, Theme.LIGHT)
+  
 }
 
 function setCheckboxStatus() { //ф-я установки состояния переключателя темы
